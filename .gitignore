@@ -4,6 +4,4 @@ _site/
 .jekyll-metadata
 .DS_Store
 prepros.config
-Gemfile
-Gemfile.lock
 

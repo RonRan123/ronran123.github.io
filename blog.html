@@ -1,0 +1,27 @@
+---
+layout: default
+title: Blog
+description: Essays and notes by Ronith Ranjan on technology, political thought, and ideas at their intersection.
+permalink: /blog/
+---
+
+<section class="blog-listing">
+  <h1>Blog</h1>
+
+  {% if site.posts.size == 0 %}
+    <p>No posts yet. Check back soon.</p>
+  {% else %}
+    <ul class="post-list">
+      {% for post in site.posts %}
+        <li>
+          <time datetime="{{ post.date | date_to_xmlschema }}">
+            {{ post.date | date: "%b %-d, %Y" }}
+          </time>
+          <a href="{{ post.url }}">{{ post.title }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</section>
+
+{% include subscribe-form.html %}

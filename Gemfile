@@ -2,8 +2,10 @@
 
 source "https://rubygems.org"
 
-# gem "rails"
+gem "jekyll", "~> 4.3"
+gem "webrick", "~> 1.8"
 
-gem "jekyll", "~> 4.0"
-gem "jekyll-theme-minimal"
-gem "webrick", "~> 1.7"
+group :jekyll_plugins do
+  gem "jekyll-feed", "~> 0.17"
+  gem "jekyll-seo-tag", "~> 2.8"
+end

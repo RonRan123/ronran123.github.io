@@ -1,4 +1,21 @@
-theme: jekyll-theme-minimal
-title: Ronith's homepage
-description: Bookmark this to keep an eye on my project updates!
+title: Ronith Ranjan
+description: Writing about technology, political thought, and ideas at the intersection of both.
 name: Ronith Ranjan
+url: "https://www.ronithranjan.com"
+baseurl: ""
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+feed:
+  path: feed.xml
+
+permalink: /:categories/:year/:month/:day/:title/
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - .claude/
+  - .github/
