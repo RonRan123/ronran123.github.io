@@ -1,0 +1,127 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getPosts, getProjects, formatDate } from '../lib/content';
+
+const posts = (await getPosts()).slice(0, 2);
+const projects = (await getProjects()).filter((p) => p.data.featured).slice(0, 3);
+---
+
+<BaseLayout>
+  <img
+    class="portrait"
+    src="/images/ronith-400.jpg"
+    srcset="/images/ronith-400.jpg 400w, /images/ronith-800.jpg 800w"
+    sizes="(max-width: 480px) 160px, 200px"
+    width="389"
+    height="400"
+    alt="Ronith Ranjan"
+  />
+
+  <h1>Ronith Ranjan</h1>
+
+  <div class="prose intro">
+    <p>
+      I'm a senior business analyst at McKinsey in New York, where most of my time goes to
+      AI products — most recently as product owner for a RAG-powered sales agent, and
+      before that building the model that told a Fortune 500 CIO which of their four
+      thousand applications were worth keeping.
+    </p>
+    <p>
+      I studied computer science and Political &amp; Social Thought at UVA, which is a less
+      unusual pairing than it sounds: both are about how systems allocate power. I wrote a
+      hundred-page thesis on what computation does to the relationship between a citizen
+      and a state, and I've been circling the same question ever since — through a summer
+      on the City of Boston's data portal, two years building a recruiting platform at
+      Forge, and most of what I write here.
+    </p>
+    <p>
+      Lately I'm most interested in what happens when agentic systems start making the
+      decisions that used to require a person to sign off. If you're working on that, or
+      want to argue about it, I'd like to hear from you.
+    </p>
+  </div>
+
+  {posts.length > 0 && (
+    <section class="section">
+      <h2>Recent writing</h2>
+      <ul class="list">
+        {posts.map((post) => (
+          <li>
+            <a href={`/writing/${post.id}`}>{post.data.title}</a>
+            <p class="ui">{formatDate(post.data.date)} · {post.data.description}</p>
+          </li>
+        ))}
+      </ul>
+      <p class="more"><a href="/writing">All writing →</a></p>
+    </section>
+  )}
+
+  <section class="section">
+    <h2>Projects</h2>
+    <ul class="list">
+      {projects.map((project) => (
+        <li>
+          <a href={project.data.link}>{project.data.title}</a>
+          <p class="ui">{project.data.description}</p>
+        </li>
+      ))}
+    </ul>
+    <p class="more"><a href="/projects">All projects →</a></p>
+  </section>
+</BaseLayout>
+
+<style>
+  .portrait {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center top;
+    margin-bottom: var(--space-3);
+  }
+
+  @media (min-width: 481px) {
+    .portrait { width: 200px; height: 200px; }
+  }
+
+  .intro { margin-top: var(--space-3); }
+
+  .section { margin-top: var(--space-5); }
+
+  .section h2 {
+    font-size: var(--text-lg);
+    padding-bottom: var(--space-1);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .list {
+    list-style: none;
+    padding: 0;
+    margin-top: var(--space-2);
+  }
+
+  .list li + li { margin-top: var(--space-3); }
+
+  .list > li > a {
+    color: var(--color-text);
+    text-decoration: none;
+    font-size: var(--text-base);
+  }
+
+  .list > li > a:hover {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+  }
+
+  .list p { margin-top: 0.15rem; line-height: 1.5; }
+
+  .more {
+    margin-top: var(--space-3);
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+  }
+
+  .more a { text-decoration: none; }
+  .more a:hover { text-decoration: underline; }
+</style>

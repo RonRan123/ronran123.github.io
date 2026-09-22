@@ -1,0 +1,41 @@
+---
+import { SITE } from '../consts';
+---
+
+<footer class="site-footer">
+  <div class="wrap">
+    <ul>
+      <li><a href={`mailto:${SITE.email}`}>Email</a></li>
+      <li><a href={SITE.linkedin}>LinkedIn</a></li>
+      <li><a href={SITE.github}>GitHub</a></li>
+      <li><a href="/rss.xml">RSS</a></li>
+    </ul>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--color-border);
+    padding-block: var(--space-4);
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+  }
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    list-style: none;
+    padding: 0;
+  }
+
+  a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    display: inline-block;
+    padding-block: var(--space-1);
+    margin-block: calc(var(--space-1) * -1);
+  }
+
+  a:hover { color: var(--color-accent); }
+</style>

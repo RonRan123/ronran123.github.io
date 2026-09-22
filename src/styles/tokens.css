@@ -1,0 +1,46 @@
+/* ============================================================
+   DESIGN TOKENS — the whole visual system lives here.
+   Changing the palette, spacing or type scale means editing
+   THIS FILE ONLY. Never hardcode a color/space/font elsewhere.
+   Rationale: docs/design.md
+   ============================================================ */
+:root {
+  /* --- Color ------------------------------------------------
+     Calm neutral, deliberately "between light and dark" —
+     not stark black-on-white, not a dark theme. No toggle. */
+  --color-bg:         #f7f6f3;
+  --color-text:       #1f1e1c;
+  --color-text-muted: #6b6862;
+  --color-accent:     #2b5fd9;
+  --color-nav-bg:     #f7f6f3;
+  --color-border:     #e4e2dd;
+
+  /* --- Type -------------------------------------------------
+     System faces only — zero font loading, zero network cost.
+     Serif carries body prose; sans carries UI chrome
+     (nav, dates, metadata, footer). See docs/design.md. */
+  --font-serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --font-sans:  system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* Fluid scale — no breakpoint-specific font sizes anywhere. */
+  --text-xs:   0.8125rem;
+  --text-sm:   0.875rem;
+  --text-base: clamp(1.0625rem, 1.02rem + 0.22vw, 1.1875rem);
+  --text-lg:   clamp(1.1875rem, 1.13rem + 0.28vw, 1.3125rem);
+  --text-xl:   clamp(1.375rem, 1.28rem + 0.48vw, 1.625rem);
+  --text-2xl:  clamp(1.75rem, 1.53rem + 1.05vw, 2.375rem);
+
+  --leading-tight: 1.25;
+  --leading-body:  1.7;
+
+  /* --- Layout ---------------------------------------------- */
+  --max-width:   640px;
+  --gutter:      1.25rem;
+
+  /* --- Space ----------------------------------------------- */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2.5rem;
+  --space-5: 4rem;
+}

@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getProjects } from '../lib/content';
+import { render } from 'astro:content';
+
+const projects = await getProjects();
+const rendered = await Promise.all(
+  projects.map(async (project) => ({ project, Content: (await render(project)).Content })),
+);
+---
+
+<BaseLayout
+  title="Projects"
+  description="Selected projects and work by Ronith Ranjan."
+>
+  <h1>Projects</h1>
+
+  <div class="entries">
+    {rendered.map(({ project, Content }) => (
+      <article>
+        <h2><a href={project.data.link}>{project.data.title}</a></h2>
+        <div class="prose body"><Content /></div>
+      </article>
+    ))}
+  </div>
+</BaseLayout>
+
+<style>
+  .entries { margin-top: var(--space-4); }
+
+  article {
+    padding-block: var(--space-4);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  article:first-child { border-top: 1px solid var(--color-border); }
+
+  h2 { font-size: var(--text-lg); }
+
+  h2 a {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  h2 a:hover {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+  }
+
+  .body { margin-top: var(--space-2); }
+  .body :global(p) { color: var(--color-text-muted); }
+  .body :global(p:first-child) { color: var(--color-text); }
+</style>
