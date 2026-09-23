@@ -1,7 +1,6 @@
 ---
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
-import Footer from '../components/Footer.astro';
 import { SITE } from '../consts';
 import { cleanPath } from '../lib/url';
 
@@ -68,6 +67,5 @@ const ogImage = new URL(image, Astro.site);
         <slot />
       </div>
     </main>
-    <Footer />
   </body>
 </html>

@@ -22,11 +22,6 @@ body {
   line-height: var(--leading-body);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-
-  /* Sticky footer without a wrapper element */
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
 }
 
 h1, h2, h3, h4 {
@@ -80,7 +75,6 @@ code, pre {
 }
 
 main {
-  flex: 1;
   padding-block: var(--space-5) var(--space-5);
 }
 
