@@ -1,0 +1,70 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getProjects, formatDate } from '../../lib/content';
+
+const projects = await getProjects();
+---
+
+<BaseLayout
+  title="Projects"
+  description="Selected projects and work by Ronith Ranjan."
+>
+  <h1>Projects</h1>
+  <p class="lede">What I've built, and what I took away from building it.</p>
+
+  <ul class="entries">
+    {projects.map((project) => (
+      <li>
+        <a href={`/projects/${project.id}`}>{project.data.title}</a>
+        {project.data.date && (
+          <p class="meta ui">
+            <time datetime={project.data.date.toISOString()}>
+              {formatDate(project.data.date)}
+            </time>
+          </p>
+        )}
+        <p class="desc">{project.data.description}</p>
+      </li>
+    ))}
+  </ul>
+</BaseLayout>
+
+<style>
+  .lede {
+    color: var(--color-text-muted);
+    margin-top: var(--space-1);
+  }
+
+  .entries {
+    list-style: none;
+    padding: 0;
+    margin-top: var(--space-4);
+  }
+
+  .entries li {
+    padding-block: var(--space-3);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .entries li:first-child { border-top: 1px solid var(--color-border); }
+
+  .entries > li > a {
+    font-size: var(--text-lg);
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  .entries > li > a:hover {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+  }
+
+  .meta { margin-top: 0.15rem; }
+
+  .desc {
+    margin-top: var(--space-1);
+    color: var(--color-text-muted);
+    line-height: 1.55;
+  }
+</style>

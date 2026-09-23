@@ -18,7 +18,11 @@ const projects = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    link: z.string(),
+    /** Optional link out (a PDF, a live site). The project's own page is the
+        primary destination; this renders as a link within it. */
+    externalLink: z.string().optional(),
+    /** Label for that link, e.g. "Download the thesis". */
+    externalLabel: z.string().optional(),
     date: z.date().optional(),
     /** Surfaced on the home page. Keep to 2-3 across all projects. */
     featured: z.boolean().default(false),

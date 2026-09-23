@@ -1,0 +1,73 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getProjects, formatDate } from '../../lib/content';
+
+export const getStaticPaths = (async () => {
+  const projects = await getProjects();
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project },
+  }));
+}) satisfies GetStaticPaths;
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+const { title, description, date, externalLink, externalLabel } = project.data;
+---
+
+<BaseLayout title={title} description={description} type="article">
+  <article>
+    <header>
+      <h1>{title}</h1>
+      {date && (
+        <p class="ui date">
+          <time datetime={date.toISOString()}>{formatDate(date)}</time>
+        </p>
+      )}
+      {externalLink && (
+        <p class="external">
+          <a href={externalLink}>{externalLabel ?? 'View project'} →</a>
+        </p>
+      )}
+    </header>
+
+    <div class="prose body">
+      <Content />
+    </div>
+  </article>
+
+  <p class="back ui"><a href="/projects">← All projects</a></p>
+</BaseLayout>
+
+<style>
+  header { margin-bottom: var(--space-4); }
+  .date { margin-top: var(--space-1); }
+
+  .external {
+    margin-top: var(--space-2);
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+  }
+
+  .external a { text-decoration: none; }
+  .external a:hover { text-decoration: underline; }
+
+  .body :global(h2) {
+    font-size: var(--text-lg);
+    margin-top: var(--space-4);
+  }
+
+  .body :global(ul),
+  .body :global(ol) { padding-left: var(--space-3); }
+
+  .back {
+    margin-top: var(--space-5);
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .back a { color: var(--color-text-muted); text-decoration: none; }
+  .back a:hover { color: var(--color-accent); }
+</style>
