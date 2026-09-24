@@ -4,8 +4,7 @@
  */
 export const SITE = {
   title: 'Ronith Ranjan',
-  description:
-    'Writing about technology, political thought, and ideas at the intersection of both.',
+  description: 'Writing about technology, economics, and ideas at the intersection of both.',
   email: 'ronith.ranjan123@gmail.com',
   linkedin: 'https://www.linkedin.com/in/ronith-ranjan/',
   github: 'https://github.com/RonRan123',

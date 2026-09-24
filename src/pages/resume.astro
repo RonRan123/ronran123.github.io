@@ -55,9 +55,7 @@ const experience = [
     org: 'Computer Science Department, UVA',
     role: 'Teaching Assistant',
     place: 'Charlottesville, VA',
-    notes: [
-      'Substituted for the professor across 4 hour-long lectures, each on short notice.',
-    ],
+    notes: ['Substituted for the professor across 4 hour-long lectures, each on short notice.'],
   },
   {
     period: 'June 2021 — Aug 2021',
@@ -103,11 +101,13 @@ const education = [
   <h1>Resume</h1>
 
   <p class="lede">
-    Currently a senior business analyst at McKinsey in New York, working mostly on AI
-    products. Before that, computer science and Political &amp; Social Thought at UVA.
+    Currently a senior business analyst at McKinsey in New York, working mostly on AI products.
+    Before that, computer science and Political &amp; Social Thought at UVA.
   </p>
 
-  <p class="download"><a href="/resume.pdf">Download PDF →</a></p>
+  <p class="download">
+    <a href="/resume.pdf">Download PDF →</a>
+  </p>
 
   <section>
     <h2>Experience</h2>
@@ -115,8 +115,14 @@ const education = [
       <article class="entry">
         <p class="period ui">{item.period}</p>
         <h3>{item.org}</h3>
-        <p class="role ui">{item.role} · {item.place}</p>
-        <ul>{item.notes.map((note) => <li>{note}</li>)}</ul>
+        <p class="role ui">
+          {item.role} · {item.place}
+        </p>
+        <ul>
+          {item.notes.map((note) => (
+            <li>{note}</li>
+          ))}
+        </ul>
       </article>
     ))}
   </section>
@@ -127,8 +133,14 @@ const education = [
       <article class="entry">
         <p class="period ui">{item.period}</p>
         <h3>{item.org}</h3>
-        <p class="role ui">{item.role} · {item.place}</p>
-        <ul>{item.notes.map((note) => <li>{note}</li>)}</ul>
+        <p class="role ui">
+          {item.role} · {item.place}
+        </p>
+        <ul>
+          {item.notes.map((note) => (
+            <li>{note}</li>
+          ))}
+        </ul>
       </article>
     ))}
   </section>
@@ -136,14 +148,16 @@ const education = [
   <section>
     <h2>Skills</h2>
     <p class="skills">
-      Python, C++, JavaScript, HTML/CSS, Java, R.
-      Spanish (fluent), Hindi (conversational).
+      Python, C++, JavaScript, HTML/CSS, Java, R. Spanish (fluent), Hindi (conversational).
     </p>
   </section>
 </BaseLayout>
 
 <style>
-  .lede { margin-top: var(--space-2); color: var(--color-text-muted); }
+  .lede {
+    margin-top: var(--space-2);
+    color: var(--color-text-muted);
+  }
 
   .download {
     margin-top: var(--space-3);
@@ -160,9 +174,13 @@ const education = [
     text-decoration: none;
   }
 
-  .download a:hover { background: var(--color-accent); }
+  .download a:hover {
+    background: var(--color-accent);
+  }
 
-  section { margin-top: var(--space-5); }
+  section {
+    margin-top: var(--space-5);
+  }
 
   section h2 {
     font-size: var(--text-lg);
@@ -170,16 +188,22 @@ const education = [
     border-bottom: 1px solid var(--color-border);
   }
 
-  .entry { margin-top: var(--space-4); }
+  .entry {
+    margin-top: var(--space-4);
+  }
 
-  .period { margin-bottom: 0.1rem; }
+  .period {
+    margin-bottom: 0.1rem;
+  }
 
   .entry h3 {
     font-size: var(--text-base);
     font-weight: 600;
   }
 
-  .role { margin-top: 0.1rem; }
+  .role {
+    margin-top: 0.1rem;
+  }
 
   .entry ul {
     margin-top: var(--space-1);
@@ -189,7 +213,12 @@ const education = [
     line-height: 1.6;
   }
 
-  .entry li + li { margin-top: var(--space-1); }
+  .entry li + li {
+    margin-top: var(--space-1);
+  }
 
-  .skills { margin-top: var(--space-2); color: var(--color-text-muted); }
+  .skills {
+    margin-top: var(--space-2);
+    color: var(--color-text-muted);
+  }
 </style>

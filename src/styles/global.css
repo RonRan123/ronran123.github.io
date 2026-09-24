@@ -3,13 +3,30 @@
 /* ============================================================
    RESET
    ============================================================ */
-*, *::before, *::after { box-sizing: border-box; }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
-body, h1, h2, h3, h4, p, ul, ol, figure, blockquote {
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol,
+figure,
+blockquote {
   margin: 0;
 }
 
-img { max-width: 100%; height: auto; display: block; }
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
 
 /* ============================================================
    BASE
@@ -24,18 +41,29 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   line-height: var(--leading-tight);
   font-weight: 600;
   letter-spacing: -0.015em;
   text-wrap: balance;
 }
 
-h1 { font-size: var(--text-2xl); }
-h2 { font-size: var(--text-xl); }
-h3 { font-size: var(--text-lg); }
+h1 {
+  font-size: var(--text-2xl);
+}
+h2 {
+  font-size: var(--text-xl);
+}
+h3 {
+  font-size: var(--text-lg);
+}
 
-p { text-wrap: pretty; }
+p {
+  text-wrap: pretty;
+}
 
 a {
   color: var(--color-accent);
@@ -44,7 +72,9 @@ a {
   text-decoration-thickness: 1px;
 }
 
-a:hover { text-decoration-thickness: 2px; }
+a:hover {
+  text-decoration-thickness: 2px;
+}
 
 :focus-visible {
   outline: 2px solid var(--color-accent);
@@ -58,7 +88,8 @@ hr {
   margin: var(--space-4) 0;
 }
 
-code, pre {
+code,
+pre {
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 0.9em;
 }
@@ -79,8 +110,12 @@ main {
 }
 
 /* Vertical rhythm for flowing prose */
-.prose > * + * { margin-top: var(--space-3); }
-.prose h2 { margin-top: var(--space-4); }
+.prose > * + * {
+  margin-top: var(--space-3);
+}
+.prose h2 {
+  margin-top: var(--space-4);
+}
 
 /* Utility: sans-serif UI text (dates, metadata, labels) */
 .ui {

@@ -22,32 +22,34 @@ const projects = (await getProjects()).filter((p) => p.data.featured).slice(0, 3
     <h1>Ronith Ranjan</h1>
 
     <ul class="contact">
-      <li><a href={`mailto:${SITE.email}`}>Email</a></li>
-      <li><a href={SITE.linkedin}>LinkedIn</a></li>
-      <li><a href={SITE.github}>GitHub</a></li>
+      <li>
+        <a href={`mailto:${SITE.email}`}>Email</a>
+      </li>
+      <li>
+        <a href={SITE.linkedin}>LinkedIn</a>
+      </li>
+      <li>
+        <a href={SITE.github}>GitHub</a>
+      </li>
     </ul>
   </header>
 
   <div class="prose intro">
+    <p>Hi there! I’m Ronith.</p>
     <p>
-      I'm a senior business analyst at McKinsey in New York, where most of my time goes to
-      AI products — most recently as product owner for a RAG-powered sales agent, and
-      before that building the model that told a Fortune 500 CIO which of their four
-      thousand applications were worth keeping.
+      I’m a Senior Business Analyst at McKinsey, where I focus on tech strategy / transformations
+      and higher education / nonprofit. My work has ranged from advising large software players to
+      leading biopharmas to top universities to new nonprofits.
     </p>
     <p>
-      I studied computer science and Political &amp; Social Thought at UVA, which is a less
-      unusual pairing than it sounds: both are about how systems allocate power. I wrote a
-      hundred-page thesis on what computation does to the relationship between a citizen
-      and a state, and I've been circling the same question ever since — through a summer
-      on the City of Boston's data portal, two years building a recruiting platform at
-      Forge, and most of what I write here.
+      Currently, I live in New York City but am originally from Northern Virginia. I graduated with
+      a B.A. from University of Virginia where I studied computer science, political & social
+      thought, and economics. I was highly involved in a nonprofit that helps students develop
+      essential tech-related skills and get impactful internships. To develop my own skills, I
+      sought out technical roles in a private company, nonprofit organization, and public entity
+      (all of which convinced me of the potential for tech to be a force for good).
     </p>
-    <p>
-      Lately I'm most interested in what happens when agentic systems start making the
-      decisions that used to require a person to sign off. If you're working on that, or
-      want to argue about it, I'd like to hear from you.
-    </p>
+    <p>In my free time, I like to read, run, and play board games.</p>
   </div>
 
   {posts.length > 0 && (
@@ -57,11 +59,15 @@ const projects = (await getProjects()).filter((p) => p.data.featured).slice(0, 3
         {posts.map((post) => (
           <li>
             <a href={`/writing/${post.id}`}>{post.data.title}</a>
-            <p class="ui">{formatDate(post.data.date)} · {post.data.description}</p>
+            <p class="ui">
+              {formatDate(post.data.date)} · {post.data.description}
+            </p>
           </li>
         ))}
       </ul>
-      <p class="more"><a href="/writing">All writing →</a></p>
+      <p class="more">
+        <a href="/writing">All writing →</a>
+      </p>
     </section>
   )}
 
@@ -75,7 +81,9 @@ const projects = (await getProjects()).filter((p) => p.data.featured).slice(0, 3
         </li>
       ))}
     </ul>
-    <p class="more"><a href="/projects">All projects →</a></p>
+    <p class="more">
+      <a href="/projects">All projects →</a>
+    </p>
   </section>
 </BaseLayout>
 
@@ -97,7 +105,9 @@ const projects = (await getProjects()).filter((p) => p.data.featured).slice(0, 3
     margin: 0 auto var(--space-3);
   }
 
-  .intro-header h1 { margin-top: 0; }
+  .intro-header h1 {
+    margin-top: 0;
+  }
 
   .contact {
     display: flex;
@@ -118,7 +128,9 @@ const projects = (await getProjects()).filter((p) => p.data.featured).slice(0, 3
     margin-block: calc(var(--space-1) * -1);
   }
 
-  .contact a:hover { color: var(--color-accent); }
+  .contact a:hover {
+    color: var(--color-accent);
+  }
 
   /* Below this the photo stacks above the name instead of floating.
      Deliberately NOT hidden on mobile (Zhao hides his) — mobile is where
@@ -132,9 +144,13 @@ const projects = (await getProjects()).filter((p) => p.data.featured).slice(0, 3
     }
   }
 
-  .intro { margin-top: var(--space-4); }
+  .intro {
+    margin-top: var(--space-4);
+  }
 
-  .section { margin-top: var(--space-5); }
+  .section {
+    margin-top: var(--space-5);
+  }
 
   .section h2 {
     font-size: var(--text-lg);
@@ -148,7 +164,9 @@ const projects = (await getProjects()).filter((p) => p.data.featured).slice(0, 3
     margin-top: var(--space-2);
   }
 
-  .list li + li { margin-top: var(--space-3); }
+  .list li + li {
+    margin-top: var(--space-3);
+  }
 
   .list > li > a {
     color: var(--color-text);
@@ -162,7 +180,10 @@ const projects = (await getProjects()).filter((p) => p.data.featured).slice(0, 3
     text-underline-offset: 0.18em;
   }
 
-  .list p { margin-top: 0.15rem; line-height: 1.5; }
+  .list p {
+    margin-top: 0.15rem;
+    line-height: 1.5;
+  }
 
   .more {
     margin-top: var(--space-3);
@@ -170,6 +191,10 @@ const projects = (await getProjects()).filter((p) => p.data.featured).slice(0, 3
     font-size: var(--text-sm);
   }
 
-  .more a { text-decoration: none; }
-  .more a:hover { text-decoration: underline; }
+  .more a {
+    text-decoration: none;
+  }
+  .more a:hover {
+    text-decoration: underline;
+  }
 </style>

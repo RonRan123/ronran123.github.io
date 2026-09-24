@@ -5,10 +5,7 @@ import { getProjects, formatDate } from '../../lib/content';
 const projects = await getProjects();
 ---
 
-<BaseLayout
-  title="Projects"
-  description="Selected projects and work by Ronith Ranjan."
->
+<BaseLayout title="Projects" description="Selected projects and work by Ronith Ranjan.">
   <h1>Projects</h1>
   <p class="lede">What I've built, and what I took away from building it.</p>
 
@@ -18,9 +15,7 @@ const projects = await getProjects();
         <a href={`/projects/${project.id}`}>{project.data.title}</a>
         {project.data.date && (
           <p class="meta ui">
-            <time datetime={project.data.date.toISOString()}>
-              {formatDate(project.data.date)}
-            </time>
+            <time datetime={project.data.date.toISOString()}>{formatDate(project.data.date)}</time>
           </p>
         )}
         <p class="desc">{project.data.description}</p>
@@ -46,7 +41,9 @@ const projects = await getProjects();
     border-bottom: 1px solid var(--color-border);
   }
 
-  .entries li:first-child { border-top: 1px solid var(--color-border); }
+  .entries li:first-child {
+    border-top: 1px solid var(--color-border);
+  }
 
   .entries > li > a {
     font-size: var(--text-lg);
@@ -60,7 +57,9 @@ const projects = await getProjects();
     text-underline-offset: 0.18em;
   }
 
-  .meta { margin-top: 0.15rem; }
+  .meta {
+    margin-top: 0.15rem;
+  }
 
   .desc {
     margin-top: var(--space-1);

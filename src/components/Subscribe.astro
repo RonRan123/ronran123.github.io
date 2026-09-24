@@ -8,7 +8,9 @@ import { SITE } from '../consts';
 
   {SITE.newsletterConfigured ? (
     <form action={SITE.newsletterAction} method="post" target="_blank">
-      <label class="visually-hidden" for="bd-email">Email address</label>
+      <label class="visually-hidden" for="bd-email">
+        Email address
+      </label>
       <input
         id="bd-email"
         type="email"
@@ -21,7 +23,9 @@ import { SITE } from '../consts';
     </form>
   ) : (
     <p class="pending">
-      <em>Not yet wired up — see <code>newsletterAction</code> in <code>src/consts.ts</code>.</em>
+      <em>
+        Not yet wired up — see <code>newsletterAction</code> in <code>src/consts.ts</code>.
+      </em>
     </p>
   )}
 </section>
@@ -33,7 +37,9 @@ import { SITE } from '../consts';
     border-top: 1px solid var(--color-border);
   }
 
-  h2 { font-size: var(--text-lg); }
+  h2 {
+    font-size: var(--text-lg);
+  }
 
   p {
     color: var(--color-text-muted);
@@ -61,7 +67,9 @@ import { SITE } from '../consts';
     border-radius: 3px;
   }
 
-  input:focus-visible { border-color: var(--color-accent); }
+  input:focus-visible {
+    border-color: var(--color-accent);
+  }
 
   button {
     padding: var(--space-1) var(--space-3);
@@ -74,11 +82,15 @@ import { SITE } from '../consts';
     cursor: pointer;
   }
 
-  button:hover { background: var(--color-accent); border-color: var(--color-accent); }
+  button:hover {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+  }
 
   .visually-hidden {
     position: absolute;
-    width: 1px; height: 1px;
+    width: 1px;
+    height: 1px;
     overflow: hidden;
     clip-path: inset(50%);
     white-space: nowrap;

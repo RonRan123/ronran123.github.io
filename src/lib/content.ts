@@ -11,9 +11,7 @@ export async function getPosts(): Promise<CollectionEntry<'writing'>[]> {
 /** Projects, newest first; undated entries sort last. */
 export async function getProjects(): Promise<CollectionEntry<'projects'>[]> {
   const projects = await getCollection('projects');
-  return projects.sort(
-    (a, b) => (b.data.date?.valueOf() ?? 0) - (a.data.date?.valueOf() ?? 0),
-  );
+  return projects.sort((a, b) => (b.data.date?.valueOf() ?? 0) - (a.data.date?.valueOf() ?? 0));
 }
 
 export const formatDate = (date: Date): string =>
