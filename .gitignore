@@ -1,7 +1,20 @@
-_site/
-.sass-cache/
-.jekyll-cache/
-.jekyll-metadata
-.DS_Store
-prepros.config
+# build output
+dist/
+# generated types
+.astro/
 
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+
+# macOS
+.DS_Store
+
+# editors
+.idea/
+
+# Internal planning docs — not for the public repo
+docs/
+CLAUDE.md

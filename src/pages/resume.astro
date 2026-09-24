@@ -1,0 +1,227 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+/**
+ * Timeline content lives here rather than in a collection: it's one page,
+ * edited as a unit, and a collection would be indirection with no payoff.
+ * Source of record for the PDF is public/resume.pdf — bullet text below is
+ * copied verbatim from it, so keep the two in sync when the PDF changes.
+ */
+const experience = [
+  {
+    period: 'September 2024 – Present',
+    org: 'McKinsey & Company',
+    role: 'Senior Business Analyst',
+    place: 'New York, NY',
+    notes: [
+      'Led development of RAG-powered agentic sales tool as product owner, managing 3-person team across sprints to automate B2B outreach and prospect research, demoed to 15+ clients with multiple converting into new studies',
+      'Developed growth playbook to transform a leading semiconductor player’s IoT capabilities toward the physical AI opportunity, prioritizing and sizing 3 of 11 verticals that were funded by EVP',
+      'Strengthened and applied AI risk disruption framework for 2 SaaS PortCos (evaluating moat strength, pricing resilience, and competitive exposure) to inform a PE firm’s investment decision and asset-prioritization strategy',
+      'Built app rationalization model across 4K+ enterprise apps and 6 BUs, identifying $100M+ in savings and agentic AI capability gaps, and led global tech-hub location analysis for F500 CIO overseeing $1.5B IT spend',
+    ],
+  },
+  {
+    period: 'June 2024 – August 2024',
+    org: 'City of Boston',
+    role: 'Product Manager Fellow',
+    place: 'Boston, MA',
+    notes: [
+      'Selected from an applicant pool of 4.5K+ with an acceptance rate of 2% as part of the Coding it Forward Fellowship, a program that empowers early-career technologists to explore technology careers in government',
+      'Conducted initial user and event explorations on 13K+ monthly users of the open data portal, reducing average of number clicks to reach popular datasets',
+    ],
+  },
+  {
+    period: 'May 2022 – May 2024',
+    org: 'Forge',
+    role: 'Engineering Director',
+    place: 'Charlottesville, VA',
+    notes: [
+      'Designed and built recruiting platform MVP for 750+ students and 120+ companies, enabling 15% faster match rate',
+      'Founded tech consulting branch for short- to medium-term projects around University community, increasing engineering revenue by 22%',
+      'Taught 71 students software engineering skills through a 140-hour course in preparation for their 9-week internship',
+    ],
+  },
+  {
+    period: 'May 2022 – September 2022',
+    org: 'Economics Department at UVA',
+    role: 'AI Economics Research Assistant',
+    place: 'Charlottesville, VA',
+    notes: [
+      'Collaborated with editors of upcoming Oxford Handbook of AI Governance on editing podcast episodes and chapter summaries for 10+ chapters on AI related issues from governance to risk mitigation',
+      'Built a web scraper tool to collect email and publishing data on over 1.5K+ economists from RePEc',
+    ],
+  },
+  {
+    period: 'January 2021 – May 2023',
+    org: 'Computer Science Department at UVA',
+    role: 'CS Teaching Assistant',
+    place: 'Charlottesville, VA',
+    notes: [
+      'Substituted for professor and taught 4 different, hour-long lectures with short notice',
+    ],
+  },
+  {
+    period: 'June 2021 – August 2021',
+    org: 'Curiosity Stream',
+    role: 'Full Stack Software Engineer Intern',
+    place: 'Silver Spring, MD',
+    notes: [
+      'Built metadata management tool for recommender system’s 4K+ tags and 3K+ titles, reporting to CTO',
+    ],
+  },
+];
+
+const education = [
+  {
+    period: 'August 2020 – May 2024',
+    org: 'University of Virginia',
+    role: 'BA Computer Science, Political & Social Thought, Economics (Minor); GPA: 3.98',
+    place: 'Charlottesville, VA',
+    notes: [
+      'Completed 100-page thesis examining the relationship between computational technology and state power',
+      'Activities: Echols Scholar (Top 5%), Jefferson Literary and Debating Society, University Judiciary Committee, Senior Resident in Housing & Residence Life',
+      'Neo Finalist 2023: One of 150 students selected in the nation from 1000+ for CS skills and passion for startups',
+      'Awarded scholarship for United States Senate Youth Program as one of two delegates for Virginia',
+      'Published Paper in Journal: Analyzed current UVA data ecosystem and created recommendations for building a student-run open data community based on past successful models',
+    ],
+  },
+  {
+    period: 'August 2016 – June 2020',
+    org: 'Thomas Jefferson High School for Science and Technology',
+    role: 'Student Body President and Class President; National Merit Finalist; GPA: 4.42',
+    place: 'Alexandria, VA',
+    notes: [],
+  },
+];
+---
+
+<BaseLayout
+  title="Resume"
+  description="Ronith Ranjan — experience, education, and a downloadable PDF resume."
+>
+  <h1>Resume</h1>
+
+  <p class="lede">Tech enthusiast.</p>
+
+  <p class="download">
+    <a href="/resume.pdf">Download PDF →</a>
+  </p>
+
+  <section>
+    <h2>Experience</h2>
+    {experience.map((item) => (
+      <article class="entry">
+        <p class="period ui">{item.period}</p>
+        <h3>{item.org}</h3>
+        <p class="role ui">
+          {item.role} · {item.place}
+        </p>
+        {item.notes.length > 0 && (
+          <ul>
+            {item.notes.map((note) => (
+              <li>{note}</li>
+            ))}
+          </ul>
+        )}
+      </article>
+    ))}
+  </section>
+
+  <section>
+    <h2>Education</h2>
+    {education.map((item) => (
+      <article class="entry">
+        <p class="period ui">{item.period}</p>
+        <h3>{item.org}</h3>
+        <p class="role ui">
+          {item.role} · {item.place}
+        </p>
+        {item.notes.length > 0 && (
+          <ul>
+            {item.notes.map((note) => (
+              <li>{note}</li>
+            ))}
+          </ul>
+        )}
+      </article>
+    ))}
+  </section>
+
+  <section>
+    <h2>Skills</h2>
+    <p class="skills">
+      Technical: Python, C++, JavaScript, HTML/CSS, Java, R<br />
+      Languages: Spanish (Fluent), Hindi (Conversational)
+    </p>
+  </section>
+</BaseLayout>
+
+<style>
+  .lede {
+    margin-top: var(--space-2);
+    color: var(--color-text-muted);
+  }
+
+  .download {
+    margin-top: var(--space-3);
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+  }
+
+  .download a {
+    display: inline-block;
+    padding: var(--space-1) var(--space-3);
+    color: var(--color-bg);
+    background: var(--color-text);
+    border-radius: 3px;
+    text-decoration: none;
+  }
+
+  .download a:hover {
+    background: var(--color-accent);
+  }
+
+  section {
+    margin-top: var(--space-5);
+  }
+
+  section h2 {
+    font-size: var(--text-lg);
+    padding-bottom: var(--space-1);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .entry {
+    margin-top: var(--space-4);
+  }
+
+  .period {
+    margin-bottom: 0.1rem;
+  }
+
+  .entry h3 {
+    font-size: var(--text-base);
+    font-weight: 600;
+  }
+
+  .role {
+    margin-top: 0.1rem;
+  }
+
+  .entry ul {
+    margin-top: var(--space-1);
+    padding-left: var(--space-3);
+    color: var(--color-text-muted);
+    font-size: var(--text-base);
+    line-height: 1.6;
+  }
+
+  .entry li + li {
+    margin-top: var(--space-1);
+  }
+
+  .skills {
+    margin-top: var(--space-2);
+    color: var(--color-text-muted);
+  }
+</style>

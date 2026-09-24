@@ -1,0 +1,200 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getPosts, getProjects, formatDate } from '../lib/content';
+import { SITE } from '../consts';
+
+const posts = (await getPosts()).slice(0, 2);
+const projects = (await getProjects()).filter((p) => p.data.featured).slice(0, 3);
+---
+
+<BaseLayout>
+  <header class="intro-header">
+    <img
+      class="portrait"
+      src="/images/ronith-400.jpg"
+      srcset="/images/ronith-400.jpg 400w, /images/ronith-800.jpg 800w"
+      sizes="(max-width: 480px) 180px, 200px"
+      width="389"
+      height="400"
+      alt="Ronith Ranjan"
+    />
+
+    <h1>Ronith Ranjan</h1>
+
+    <ul class="contact">
+      <li>
+        <a href={`mailto:${SITE.email}`}>Email</a>
+      </li>
+      <li>
+        <a href={SITE.linkedin}>LinkedIn</a>
+      </li>
+      <li>
+        <a href={SITE.github}>GitHub</a>
+      </li>
+    </ul>
+  </header>
+
+  <div class="prose intro">
+    <p>Hi there! I’m Ronith.</p>
+    <p>
+      I’m a Senior Business Analyst at McKinsey, where I focus on tech strategy / transformations
+      and higher education / nonprofit. My work has ranged from advising large software players to
+      leading biopharmas to top universities to new nonprofits.
+    </p>
+    <p>
+      Currently, I live in New York City but am originally from Northern Virginia. I graduated with
+      a B.A. from University of Virginia where I studied computer science, political & social
+      thought, and economics. I was highly involved in a nonprofit that helps students develop
+      essential tech-related skills and get impactful internships. To develop my own skills, I
+      sought out technical roles in a private company, nonprofit organization, and public entity
+      (all of which convinced me of the potential for tech to be a force for good).
+    </p>
+    <p>In my free time, I like to read, run, and play board games.</p>
+  </div>
+
+  {posts.length > 0 && (
+    <section class="section">
+      <h2>Recent writing</h2>
+      <ul class="list">
+        {posts.map((post) => (
+          <li>
+            <a href={`/writing/${post.id}`}>{post.data.title}</a>
+            <p class="ui">
+              {formatDate(post.data.date)} · {post.data.description}
+            </p>
+          </li>
+        ))}
+      </ul>
+      <p class="more">
+        <a href="/writing">All writing →</a>
+      </p>
+    </section>
+  )}
+
+  <section class="section">
+    <h2>Projects</h2>
+    <ul class="list">
+      {projects.map((project) => (
+        <li>
+          <a href={`/projects/${project.id}`}>{project.data.title}</a>
+          <p class="ui">{project.data.description}</p>
+        </li>
+      ))}
+    </ul>
+    <p class="more">
+      <a href="/projects">All projects →</a>
+    </p>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Photo floats right with the name and links beside it, prose flowing
+     beneath — the nikmarda.com / danielzhao.com treatment. */
+  .intro-header::after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+
+  .portrait {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center top;
+    margin: 0 auto var(--space-3);
+  }
+
+  .intro-header h1 {
+    margin-top: 0;
+  }
+
+  .contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1) var(--space-3);
+    list-style: none;
+    padding: 0;
+    margin-top: var(--space-2);
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+  }
+
+  .contact a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    display: inline-block;
+    padding-block: var(--space-1);
+    margin-block: calc(var(--space-1) * -1);
+  }
+
+  .contact a:hover {
+    color: var(--color-accent);
+  }
+
+  /* Below this the photo stacks above the name instead of floating.
+     Deliberately NOT hidden on mobile (Zhao hides his) — mobile is where
+     most first-time visitors land. */
+  @media (min-width: 481px) {
+    .portrait {
+      float: right;
+      width: 200px;
+      height: 200px;
+      margin: 0 0 var(--space-3) var(--space-3);
+    }
+  }
+
+  .intro {
+    margin-top: var(--space-4);
+  }
+
+  .section {
+    margin-top: var(--space-5);
+  }
+
+  .section h2 {
+    font-size: var(--text-lg);
+    padding-bottom: var(--space-1);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .list {
+    list-style: none;
+    padding: 0;
+    margin-top: var(--space-2);
+  }
+
+  .list li + li {
+    margin-top: var(--space-3);
+  }
+
+  .list > li > a {
+    color: var(--color-text);
+    text-decoration: none;
+    font-size: var(--text-base);
+  }
+
+  .list > li > a:hover {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+  }
+
+  .list p {
+    margin-top: 0.15rem;
+    line-height: 1.5;
+  }
+
+  .more {
+    margin-top: var(--space-3);
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+  }
+
+  .more a {
+    text-decoration: none;
+  }
+  .more a:hover {
+    text-decoration: underline;
+  }
+</style>

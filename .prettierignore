@@ -1,0 +1,9 @@
+dist
+node_modules
+.astro
+
+# Prose is hand-written and hand-wrapped — Prettier rewrites emphasis
+# markers and frontmatter quotes, which is churn with no upside.
+*.md
+
+package-lock.json

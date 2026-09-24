@@ -1,0 +1,98 @@
+---
+import { SITE } from '../consts';
+---
+
+<section class="subscribe">
+  <h2>Subscribe</h2>
+  <p>New posts by email. Occasional, never spam, one-click unsubscribe.</p>
+
+  {SITE.newsletterConfigured ? (
+    <form action={SITE.newsletterAction} method="post" target="_blank">
+      <label class="visually-hidden" for="bd-email">
+        Email address
+      </label>
+      <input
+        id="bd-email"
+        type="email"
+        name="email"
+        placeholder="you@example.com"
+        autocomplete="email"
+        required
+      />
+      <button type="submit">Subscribe</button>
+    </form>
+  ) : (
+    <p class="pending">
+      <em>
+        Not yet wired up — see <code>newsletterAction</code> in <code>src/consts.ts</code>.
+      </em>
+    </p>
+  )}
+</section>
+
+<style>
+  .subscribe {
+    margin-top: var(--space-5);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--color-border);
+  }
+
+  h2 {
+    font-size: var(--text-lg);
+  }
+
+  p {
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+    font-family: var(--font-sans);
+    margin-top: var(--space-1);
+  }
+
+  form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1);
+    margin-top: var(--space-2);
+  }
+
+  input {
+    flex: 1 1 16rem;
+    min-width: 0;
+    padding: var(--space-1) var(--space-2);
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    color: var(--color-text);
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 3px;
+  }
+
+  input:focus-visible {
+    border-color: var(--color-accent);
+  }
+
+  button {
+    padding: var(--space-1) var(--space-3);
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    color: var(--color-bg);
+    background: var(--color-text);
+    border: 1px solid var(--color-text);
+    border-radius: 3px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+</style>

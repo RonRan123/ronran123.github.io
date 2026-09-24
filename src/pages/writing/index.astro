@@ -1,0 +1,82 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Subscribe from '../../components/Subscribe.astro';
+import { getPosts, formatDate } from '../../lib/content';
+
+const posts = await getPosts();
+---
+
+<BaseLayout
+  title="Writing"
+  description="Essays on technology, economics, and the places they meet."
+>
+  <h1>Writing</h1>
+  <p class="lede">Essays on technology, economics, and the places they meet.</p>
+
+  {posts.length === 0 ? (
+    <p class="empty">No posts published yet.</p>
+  ) : (
+    <ul class="posts">
+      {posts.map((post) => (
+        <li>
+          <a href={`/writing/${post.id}`}>{post.data.title}</a>
+          <p class="meta ui">
+            <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+          </p>
+          <p class="desc">{post.data.description}</p>
+        </li>
+      ))}
+    </ul>
+  )}
+
+  <Subscribe />
+</BaseLayout>
+
+<style>
+  .lede {
+    color: var(--color-text-muted);
+    margin-top: var(--space-1);
+  }
+
+  .posts {
+    list-style: none;
+    padding: 0;
+    margin-top: var(--space-4);
+  }
+
+  .posts li {
+    padding-block: var(--space-3);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .posts li:first-child {
+    border-top: 1px solid var(--color-border);
+  }
+
+  .posts > li > a {
+    font-size: var(--text-lg);
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  .posts > li > a:hover {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+  }
+
+  .meta {
+    margin-top: 0.15rem;
+  }
+
+  .desc {
+    margin-top: var(--space-1);
+    color: var(--color-text-muted);
+    line-height: 1.55;
+  }
+
+  .empty {
+    margin-top: var(--space-4);
+    color: var(--color-text-muted);
+  }
+</style>
