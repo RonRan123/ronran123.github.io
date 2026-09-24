@@ -5,6 +5,7 @@ externalLink: "/media/Ranjan-Ronith-PST-Thesis-2024.pdf"
 externalLabel: "Download the thesis (PDF)"
 date: 2024-05-01
 featured: true
+draft: true
 ---
 
 The state has always been in the business of knowing its citizens; computation just

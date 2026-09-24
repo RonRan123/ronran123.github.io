@@ -4,92 +4,93 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 /**
  * Timeline content lives here rather than in a collection: it's one page,
  * edited as a unit, and a collection would be indirection with no payoff.
- * Source of record for the PDF is public/resume.pdf — keep the two in sync.
+ * Source of record for the PDF is public/resume.pdf — bullet text below is
+ * copied verbatim from it, so keep the two in sync when the PDF changes.
  */
 const experience = [
   {
-    period: 'Sept 2024 — Present',
+    period: 'September 2024 – Present',
     org: 'McKinsey & Company',
     role: 'Senior Business Analyst',
     place: 'New York, NY',
     notes: [
-      'Product owner for a RAG-powered agentic sales tool, leading a 3-person team to automate B2B outreach and prospect research. Demoed to 15+ clients, several converting into new studies.',
-      'Built an app rationalization model across 4,000+ enterprise applications and 6 business units, identifying $100M+ in savings and agentic AI capability gaps for a Fortune 500 CIO overseeing $1.5B in IT spend.',
-      'Developed a growth playbook steering a leading semiconductor player’s IoT capabilities toward the physical AI opportunity — sizing and prioritizing 3 of 11 verticals, which the EVP funded.',
-      'Applied an AI disruption-risk framework to two SaaS portfolio companies — moat strength, pricing resilience, competitive exposure — informing a PE firm’s investment and asset-prioritization decisions.',
+      'Led development of RAG-powered agentic sales tool as product owner, managing 3-person team across sprints to automate B2B outreach and prospect research, demoed to 15+ clients with multiple converting into new studies',
+      'Developed growth playbook to transform a leading semiconductor player’s IoT capabilities toward the physical AI opportunity, prioritizing and sizing 3 of 11 verticals that were funded by EVP',
+      'Strengthened and applied AI risk disruption framework for 2 SaaS PortCos (evaluating moat strength, pricing resilience, and competitive exposure) to inform a PE firm’s investment decision and asset-prioritization strategy',
+      'Built app rationalization model across 4K+ enterprise apps and 6 BUs, identifying $100M+ in savings and agentic AI capability gaps, and led global tech-hub location analysis for F500 CIO overseeing $1.5B IT spend',
     ],
   },
   {
-    period: 'June 2024 — Aug 2024',
+    period: 'June 2024 – August 2024',
     org: 'City of Boston',
-    role: 'Product Manager Fellow, Coding it Forward',
+    role: 'Product Manager Fellow',
     place: 'Boston, MA',
     notes: [
-      'Selected from 4,500+ applicants (2% acceptance) for the Coding it Forward civic technology fellowship.',
-      'Ran user and event exploration across 13,000+ monthly users of the city’s open data portal, cutting the average clicks needed to reach the most-requested datasets.',
+      'Selected from an applicant pool of 4.5K+ with an acceptance rate of 2% as part of the Coding it Forward Fellowship, a program that empowers early-career technologists to explore technology careers in government',
+      'Conducted initial user and event explorations on 13K+ monthly users of the open data portal, reducing average of number clicks to reach popular datasets',
     ],
   },
   {
-    period: 'May 2022 — May 2024',
+    period: 'May 2022 – May 2024',
     org: 'Forge',
     role: 'Engineering Director',
     place: 'Charlottesville, VA',
     notes: [
-      'Designed and built the recruiting platform MVP serving 750+ students and 120+ companies, enabling a 15% faster match rate.',
-      'Founded the tech consulting branch for short- and medium-term projects around the University community, growing engineering revenue 22%.',
-      'Taught 71 students software engineering through a 140-hour course preparing them for a nine-week internship.',
+      'Designed and built recruiting platform MVP for 750+ students and 120+ companies, enabling 15% faster match rate',
+      'Founded tech consulting branch for short- to medium-term projects around University community, increasing engineering revenue by 22%',
+      'Taught 71 students software engineering skills through a 140-hour course in preparation for their 9-week internship',
     ],
   },
   {
-    period: 'May 2022 — Sept 2022',
-    org: 'Economics Department, UVA',
+    period: 'May 2022 – September 2022',
+    org: 'Economics Department at UVA',
     role: 'AI Economics Research Assistant',
     place: 'Charlottesville, VA',
     notes: [
-      'Worked with the editors of the forthcoming Oxford Handbook of AI Governance on podcast episodes and chapter summaries across 10+ chapters, from governance to risk mitigation.',
-      'Built a web scraper collecting publishing and contact data on 1,500+ economists from RePEc.',
+      'Collaborated with editors of upcoming Oxford Handbook of AI Governance on editing podcast episodes and chapter summaries for 10+ chapters on AI related issues from governance to risk mitigation',
+      'Built a web scraper tool to collect email and publishing data on over 1.5K+ economists from RePEc',
     ],
   },
   {
-    period: 'Jan 2021 — May 2023',
-    org: 'Computer Science Department, UVA',
-    role: 'Teaching Assistant',
+    period: 'January 2021 – May 2023',
+    org: 'Computer Science Department at UVA',
+    role: 'CS Teaching Assistant',
     place: 'Charlottesville, VA',
-    notes: ['Substituted for the professor across 4 hour-long lectures, each on short notice.'],
+    notes: [
+      'Substituted for professor and taught 4 different, hour-long lectures with short notice',
+    ],
   },
   {
-    period: 'June 2021 — Aug 2021',
-    org: 'CuriosityStream',
+    period: 'June 2021 – August 2021',
+    org: 'Curiosity Stream',
     role: 'Full Stack Software Engineer Intern',
     place: 'Silver Spring, MD',
     notes: [
-      'Built the metadata management tool for the recommender system’s 4,000+ tags and 3,000+ titles, reporting to the CTO.',
+      'Built metadata management tool for recommender system’s 4K+ tags and 3K+ titles, reporting to CTO',
     ],
   },
 ];
 
 const education = [
   {
-    period: 'Aug 2020 — May 2024',
+    period: 'August 2020 – May 2024',
     org: 'University of Virginia',
-    role: 'BA Computer Science and Political & Social Thought; Economics minor',
+    role: 'BA Computer Science, Political & Social Thought, Economics (Minor); GPA: 3.98',
     place: 'Charlottesville, VA',
     notes: [
-      'Echols Scholar (top 5%). GPA 3.98.',
-      'Wrote a 100-page thesis on the relationship between computational technology and state power.',
-      'Neo Finalist 2023 — one of 150 students selected nationally from 1,000+ for CS skill and startup interest.',
-      'Published a journal paper analyzing UVA’s data ecosystem and recommending a student-run open data community.',
-      'Jefferson Literary and Debating Society; University Judiciary Committee; Senior Resident in Housing & Residence Life.',
+      'Completed 100-page thesis examining the relationship between computational technology and state power',
+      'Activities: Echols Scholar (Top 5%), Jefferson Literary and Debating Society, University Judiciary Committee, Senior Resident in Housing & Residence Life',
+      'Neo Finalist 2023: One of 150 students selected in the nation from 1000+ for CS skills and passion for startups',
+      'Awarded scholarship for United States Senate Youth Program as one of two delegates for Virginia',
+      'Published Paper in Journal: Analyzed current UVA data ecosystem and created recommendations for building a student-run open data community based on past successful models',
     ],
   },
   {
-    period: 'Aug 2016 — June 2020',
+    period: 'August 2016 – June 2020',
     org: 'Thomas Jefferson High School for Science and Technology',
-    role: 'Student Body President and Class President',
+    role: 'Student Body President and Class President; National Merit Finalist; GPA: 4.42',
     place: 'Alexandria, VA',
-    notes: [
-      'National Merit Finalist. US Senate Youth Program — one of two delegates for Virginia.',
-    ],
+    notes: [],
   },
 ];
 ---
@@ -100,10 +101,7 @@ const education = [
 >
   <h1>Resume</h1>
 
-  <p class="lede">
-    Currently a senior business analyst at McKinsey in New York, working mostly on AI products.
-    Before that, computer science and Political &amp; Social Thought at UVA.
-  </p>
+  <p class="lede">Tech enthusiast.</p>
 
   <p class="download">
     <a href="/resume.pdf">Download PDF →</a>
@@ -118,11 +116,13 @@ const education = [
         <p class="role ui">
           {item.role} · {item.place}
         </p>
-        <ul>
-          {item.notes.map((note) => (
-            <li>{note}</li>
-          ))}
-        </ul>
+        {item.notes.length > 0 && (
+          <ul>
+            {item.notes.map((note) => (
+              <li>{note}</li>
+            ))}
+          </ul>
+        )}
       </article>
     ))}
   </section>
@@ -136,11 +136,13 @@ const education = [
         <p class="role ui">
           {item.role} · {item.place}
         </p>
-        <ul>
-          {item.notes.map((note) => (
-            <li>{note}</li>
-          ))}
-        </ul>
+        {item.notes.length > 0 && (
+          <ul>
+            {item.notes.map((note) => (
+              <li>{note}</li>
+            ))}
+          </ul>
+        )}
       </article>
     ))}
   </section>
@@ -148,7 +150,8 @@ const education = [
   <section>
     <h2>Skills</h2>
     <p class="skills">
-      Python, C++, JavaScript, HTML/CSS, Java, R. Spanish (fluent), Hindi (conversational).
+      Technical: Python, C++, JavaScript, HTML/CSS, Java, R<br />
+      Languages: Spanish (Fluent), Hindi (Conversational)
     </p>
   </section>
 </BaseLayout>
