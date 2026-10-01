@@ -3,8 +3,8 @@ import { cleanPath } from '../lib/url';
 
 const pathname = cleanPath(Astro.url.pathname);
 const links = [
-  { href: '/writing', label: 'Writing' },
   { href: '/projects', label: 'Projects' },
+  { href: '/writing', label: 'Writing' },
   { href: '/resume', label: 'Resume' },
 ];
 const isActive = (href: string) => pathname === href || pathname.startsWith(href + '/');

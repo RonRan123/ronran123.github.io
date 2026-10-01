@@ -76,6 +76,27 @@ a:hover {
   text-decoration-thickness: 2px;
 }
 
+/* Inline links in flowing prose get a highlighter band across the bottom of
+   the line, keeping the underline as the primary cue. Prose only — index
+   lists, nav and buttons keep the plain accent link above, so list pages
+   stay scannable. Pattern from nikmarda.com. Horizontal padding is in `em`
+   rather than a space token: the scale starts at 0.5rem, far too wide for a
+   band sitting behind a few words. */
+.prose a {
+  color: var(--color-text);
+  padding-inline: 0.12em;
+  background-image: linear-gradient(to bottom, transparent 60%, var(--color-highlight) 60%);
+}
+
+/* Fills solid on hover/keyboard focus; the underline rides along in
+   currentColor, which inverts with the text. */
+.prose a:hover,
+.prose a:focus-visible {
+  color: var(--color-bg);
+  background-color: var(--color-accent);
+  background-image: none;
+}
+
 :focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 3px;

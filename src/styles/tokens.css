@@ -15,6 +15,15 @@
   --color-nav-bg: #f7f6f3;
   --color-border: #e4e2dd;
 
+  /* Highlighter wash behind inline prose links (see `.prose a` in global.css).
+     Derived from --color-accent rather than written as a second literal, so
+     changing the accent above changes the highlight with it — the point of
+     this file. color-mix is Baseline since 2023; a browser without it drops
+     the band and the links keep their underline. (A duplicate rgba fallback
+     declaration does not survive the build — the minifier collapses repeated
+     properties — so there is deliberately only one line here.) */
+  --color-highlight: color-mix(in srgb, var(--color-accent) 18%, transparent);
+
   /* --- Type -------------------------------------------------
      System faces only — zero font loading, zero network cost.
      Serif carries body prose; sans carries UI chrome

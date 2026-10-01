@@ -26,6 +26,8 @@ const projects = defineCollection({
     date: z.date().optional(),
     /** Surfaced on the home page. Keep to 2-3 across all projects. */
     featured: z.boolean().default(false),
+    /** Same meaning as on writing: hidden from production builds, visible in dev. */
+    draft: z.boolean().default(false),
   }),
 });
 
