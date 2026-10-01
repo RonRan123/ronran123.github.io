@@ -18,3 +18,4 @@ npm-debug.log*
 # Internal planning docs — not for the public repo
 docs/
 CLAUDE.md
+.claude/skills/
