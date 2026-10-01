@@ -74,6 +74,23 @@ const { title, description, date, externalLink, externalLabel } = project.data;
     padding-left: var(--space-3);
   }
 
+  .body :global(h3) {
+    font-size: var(--text-base);
+    margin-top: var(--space-3);
+  }
+
+  .body :global(img) {
+    margin-block: var(--space-3);
+  }
+
+  /* Caption: an italic line directly under an image in the Markdown. */
+  .body :global(img + em) {
+    display: block;
+    margin-top: calc(-1 * var(--space-2));
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
   .back {
     margin-top: var(--space-5);
     padding-top: var(--space-3);
