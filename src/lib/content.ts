@@ -8,9 +8,12 @@ export async function getPosts(): Promise<CollectionEntry<'writing'>[]> {
   return posts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 }
 
-/** Projects, newest first; undated entries sort last. */
+/** Projects, newest first; undated entries sort last. Drafts are excluded from
+    production builds, matching getPosts(). */
 export async function getProjects(): Promise<CollectionEntry<'projects'>[]> {
-  const projects = await getCollection('projects');
+  const projects = await getCollection('projects', ({ data }) =>
+    import.meta.env.PROD ? !data.draft : true,
+  );
   return projects.sort((a, b) => (b.data.date?.valueOf() ?? 0) - (a.data.date?.valueOf() ?? 0));
 }
 
