@@ -1,11 +1,11 @@
 ---
-title: "run.ronithranjan.com — my first vibe coded app"
+title: "Running my own race and building the app to measure it"
 description: "A running app I built with Claude Code to track progress by heart rate instead of pace, and what building it taught me."
 externalLink: "https://run.ronithranjan.com"
 externalLabel: "Visit run.ronithranjan.com"
 date: 2026-09-30
 featured: true
-draft: true
+draft: false
 ---
 
 ## Summary

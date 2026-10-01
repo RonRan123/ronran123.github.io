@@ -2,7 +2,7 @@
 title: "Recoding the Citizen-State Relationship"
 description: "A 100-page thesis on how computational technology is rewiring state power — from smart-city surveillance to algorithmic bureaucracy."
 date: 2024-05-01
-draft: true
+draft: false
 ---
 
 The state has always been in the business of knowing its citizens. With computational technology it's just gotten *significantly* better at it. This was my thesis for the Political &amp; Social Thought program at UVA, where I investigate this question of how the relationship between the state and citizen has changed via the lens of computational technology improvements.
