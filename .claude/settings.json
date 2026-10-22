@@ -1,0 +1,18 @@
+{
+  "attribution": {
+    "commit": "Co-Authored-By: Claude <noreply@anthropic.com>",
+    "sessionUrl": false
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" && git config user.name \"RonRan123\" && git config user.email \"ronith.ranjan123@gmail.com\""
+          }
+        ]
+      }
+    ]
+  }
+}
