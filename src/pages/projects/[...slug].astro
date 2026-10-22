@@ -17,7 +17,7 @@ const { Content } = await render(project);
 const { title, description, date, externalLink, externalLabel } = project.data;
 ---
 
-<BaseLayout title={title} description={description} type="article">
+<BaseLayout title={title} description={description} type="article" contentGroup="projects">
   <article>
     <header>
       <h1>{title}</h1>
@@ -39,7 +39,9 @@ const { title, description, date, externalLink, externalLabel } = project.data;
   </article>
 
   <p class="back ui">
-    <a href="/projects">← All projects</a>
+    <a href="/projects" data-track="post_back">
+      ← All projects
+    </a>
   </p>
 </BaseLayout>
 

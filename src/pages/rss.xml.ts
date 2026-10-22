@@ -15,7 +15,8 @@ export async function GET(context: APIContext) {
       title: post.data.title,
       description: post.data.description,
       pubDate: post.data.date,
-      link: `/writing/${post.id}`,
+      // ?ref=rss attributes feed-reader visits in analytics; the site strips it on load.
+      link: `/writing/${post.id}?ref=rss`,
     })),
   });
 }
