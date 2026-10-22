@@ -14,13 +14,14 @@ export async function GET(context: APIContext) {
       title: post.data.title,
       description: post.data.description,
       pubDate: post.data.date,
-      link: `/writing/${post.id}`,
+      // ?ref=rss attributes feed-reader visits in analytics; the site strips it on load.
+      link: `/writing/${post.id}?ref=rss`,
     })),
     ...projects.map((project) => ({
       title: project.data.title,
       description: project.data.description,
       pubDate: project.data.date!,
-      link: `/projects/${project.id}`,
+      link: `/projects/${project.id}?ref=rss`,
     })),
   ].sort((a, b) => b.pubDate.valueOf() - a.pubDate.valueOf());
 
