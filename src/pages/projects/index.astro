@@ -12,7 +12,9 @@ const projects = await getProjects();
   <ul class="entries">
     {projects.map((project) => (
       <li>
-        <a href={`/projects/${project.id}`}>{project.data.title}</a>
+        <a href={`/projects/${project.id}`} data-track="projects_index">
+          {project.data.title}
+        </a>
         {project.data.date && (
           <p class="meta ui">
             <time datetime={project.data.date.toISOString()}>{formatDate(project.data.date)}</time>

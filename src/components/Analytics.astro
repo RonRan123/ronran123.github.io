@@ -1,0 +1,131 @@
+---
+import { ANALYTICS } from '../consts';
+
+interface Props {
+  /** GA4's built-in Content group: 'writing', 'projects', 'home', 'page'. */
+  contentGroup: string;
+}
+
+const { contentGroup } = Astro.props;
+const { measurementId, host, refCodes } = ANALYTICS;
+---
+
+<!--
+  Runs synchronously in <head>, before gtag.js loads, so it can:
+  1. honour the ?notrack / ?track opt-out (stored per browser, shared across subdomains),
+  2. turn ?ref=<code> into utm_* on the URL reported to GA,
+  3. strip ref / utm_* / track flags from the address bar,
+  4. hand GA the *original* URL explicitly — gtag.js loads after step 3,
+     so without page_location it would only ever see the cleaned one.
+-->
+<script is:inline define:vars={{ measurementId, host, refCodes, contentGroup }}>
+  (function () {
+    // Opt-out lives in a cookie on the root domain, so one ?notrack covers
+    // every *.ronithranjan.com site using this snippet, and in localStorage,
+    // which Safari keeps longer than its 7-day cap on script-set cookies.
+    var OPT_OUT = 'analytics_optout';
+    var cookieDomain = host.replace(/^www\./, '');
+    var onSite =
+      location.hostname === cookieDomain || location.hostname.endsWith('.' + cookieDomain);
+    var optOut = {
+      get: function () {
+        var stored = false;
+        try {
+          stored = localStorage.getItem(OPT_OUT) === '1';
+        } catch (e) {}
+        return stored || document.cookie.split('; ').indexOf(OPT_OUT + '=1') !== -1;
+      },
+      set: function (on) {
+        var domain = onSite ? '; domain=' + cookieDomain : '';
+        document.cookie =
+          OPT_OUT +
+          '=' +
+          (on ? '1; max-age=63072000' : '; max-age=0') +
+          domain +
+          '; path=/; SameSite=Lax';
+        try {
+          if (on) localStorage.setItem(OPT_OUT, '1');
+          else localStorage.removeItem(OPT_OUT);
+        } catch (e) {}
+      },
+    };
+    window.analyticsOptOut = optOut; // used by the toggle on /privacy
+
+    var url = new URL(location.href);
+    var params = url.searchParams;
+    if (params.has('notrack')) optOut.set(true);
+    if (params.has('track')) optOut.set(false);
+    var optedOut = optOut.get();
+
+    // The URL GA sees: ?ref=<code> expanded to utm_*, unless utm_* is already there.
+    var reported = new URL(url);
+    var ref = params.get('ref');
+    reported.searchParams.delete('ref');
+    reported.searchParams.delete('notrack');
+    reported.searchParams.delete('track');
+    if (ref && !reported.searchParams.has('utm_source')) {
+      var code = refCodes[ref.toLowerCase()] || { source: ref, medium: 'other' };
+      reported.searchParams.set('utm_source', code.source);
+      reported.searchParams.set('utm_medium', code.medium);
+    }
+
+    // The URL the visitor sees: tracking params removed, everything else kept.
+    var keys = Array.from(params.keys());
+    keys.forEach(function (key) {
+      if (key === 'ref' || key === 'notrack' || key === 'track' || key.indexOf('utm_') === 0) {
+        params.delete(key);
+      }
+    });
+    if (url.href !== location.href) {
+      history.replaceState(history.state, '', url.pathname + url.search + url.hash);
+    }
+
+    if (optedOut || !onSite) return;
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('set', { content_group: contentGroup });
+    gtag('config', measurementId, {
+      page_location: reported.href,
+      allow_google_signals: false,
+      allow_ad_personalization_signals: false,
+    });
+
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=' + measurementId;
+    document.head.appendChild(script);
+
+    // Internal navigation: <a data-track="home_writing"> → which list a click came from.
+    function onLinkClick(event) {
+      var link = event.target.closest && event.target.closest('a[data-track]');
+      if (!link) return;
+      gtag('event', 'internal_link_click', {
+        link_location: link.dataset.track,
+        link_url: new URL(link.href, location.href).pathname,
+      });
+    }
+    document.addEventListener('click', onLinkClick);
+    document.addEventListener('auxclick', onLinkClick);
+
+    // Reading depth on posts: one event per threshold per page view.
+    if (contentGroup === 'writing' || contentGroup === 'projects') {
+      var thresholds = [25, 50, 75, 100];
+      function onScroll() {
+        var doc = document.documentElement;
+        var seen = ((window.scrollY + window.innerHeight) / doc.scrollHeight) * 100;
+        while (thresholds.length && seen >= thresholds[0] - 1) {
+          gtag('event', 'scroll_depth', { percent_scrolled: thresholds.shift() });
+        }
+        if (!thresholds.length) window.removeEventListener('scroll', onScroll);
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      // Short posts that fit the viewport never scroll.
+      window.addEventListener('load', onScroll);
+    }
+  })();
+</script>

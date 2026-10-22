@@ -18,6 +18,7 @@ const { Content } = await render(post);
   description={post.data.description}
   type="article"
   publishedDate={post.data.date}
+  contentGroup="writing"
 >
   <article>
     <header>
@@ -33,7 +34,9 @@ const { Content } = await render(post);
   </article>
 
   <p class="back ui">
-    <a href="/writing">← All writing</a>
+    <a href="/writing" data-track="post_back">
+      ← All writing
+    </a>
   </p>
 </BaseLayout>
 
