@@ -3,89 +3,42 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { SITE } from '../consts';
 
 /**
- * Google Analytics' terms require a policy disclosing GA and its cookies.
- * Keep this in step with src/components/Analytics.astro — if tracking
- * changes (new events, a new tool), update the list below.
+ * Google Analytics' terms require disclosing GA, its cookies, and how Google
+ * uses the data. Keep in step with src/components/Analytics.astro.
  */
-const updated = 'October 22, 2026';
 ---
 
-<BaseLayout title="Privacy" description="What this site collects, why, and how to opt out.">
+<BaseLayout title="Privacy" description="What this site tracks and how to opt out.">
   <h1>Privacy</h1>
-  <p class="ui updated">Last updated {updated}</p>
 
   <div class="prose body">
     <p>
-      This is a personal site. I use Google Analytics to understand which posts people read and how
-      they find them. That's the whole purpose: there are no ads, and nothing is sold or shared for
-      marketing.
+      I use Google Analytics to see which posts people read and how they found them. This helps me
+      improve the content and ensure that I'm writing valuable content for my readers. It sets a
+      cookie and records things like the pages you visit, the link that brought you here, and your
+      device and where you are reading from. I only see totals, and I don't run ads or sell
+      anything. Google handles the data under
+      <a href="https://policies.google.com/technologies/partner-sites">its own policy</a>.
     </p>
-
-    <h2>What's collected</h2>
-    <p>When you visit, Google Analytics records:</p>
-    <ul>
-      <li>which pages you view, and how far you scroll on a post;</li>
-      <li>
-        the site or link that brought you here (for example, a search engine or a newsletter);
-      </li>
-      <li>which links on this site you click;</li>
-      <li>your device type, browser, and approximate location (country or city).</li>
-    </ul>
-    <p>
-      Google Analytics sets cookies (named <code>_ga</code>) so a return visit can be counted as the
-      same visitor. Google Analytics 4 doesn't log or store IP addresses. I've turned off Google
-      Signals and ad personalization, so this data isn't linked to your Google account or used for
-      advertising.
-    </p>
-    <p>
-      Google processes this data under its own
-      <a href="https://policies.google.com/privacy">privacy policy</a>. I only see aggregate
-      reports.
-    </p>
-
-    <h2>Newsletter</h2>
-    <p>
-      If you subscribe, your email address is stored by Buttondown and used only to send new posts.
-      Every email has a one-click unsubscribe link.
-    </p>
-
-    <h2>Opting out</h2>
-    <p>You can stop analytics for this browser here. It applies from the next page you open.</p>
+    <p>If you'd rather not be counted, you can turn it off for this browser:</p>
   </div>
 
-  <div class="optout">
-    <p class="ui" id="optout-status" aria-live="polite">
-      Checking…
-    </p>
-    <button type="button" id="optout-toggle" hidden></button>
-  </div>
+  <button type="button" id="optout-toggle" hidden></button>
 
   <div class="prose body">
     <p>
-      The setting is saved in this browser only (and applies to other ronithranjan.com sites), so it
-      resets if you clear site data or use a private window. Ad blockers and Google's
-      <a href="https://tools.google.com/dlpage/gaoptout">opt-out browser add-on</a> also work.
-    </p>
-
-    <h2>Contact</h2>
-    <p>
-      Questions or requests: <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
+      Questions? Email me at <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
     </p>
   </div>
 </BaseLayout>
 
 <script is:inline>
   (function () {
-    var status = document.getElementById('optout-status');
     var button = document.getElementById('optout-toggle');
     var optOut = window.analyticsOptOut; // defined by Analytics.astro in <head>
 
     function render() {
-      var optedOut = optOut.get();
-      status.textContent = optedOut
-        ? 'Analytics is off for this browser.'
-        : 'Analytics is on for this browser.';
-      button.textContent = optedOut ? 'Turn analytics back on' : 'Turn off analytics';
+      button.textContent = optOut.get() ? 'Analytics is off · turn back on' : 'Turn off analytics';
       button.hidden = false;
     }
 
@@ -99,31 +52,12 @@ const updated = 'October 22, 2026';
 </script>
 
 <style>
-  .updated {
-    margin-top: var(--space-1);
-  }
-
   .body {
-    margin-top: var(--space-4);
-  }
-
-  .body :global(h2) {
-    font-size: var(--text-lg);
-  }
-
-  .body :global(ul) {
-    padding-left: var(--space-3);
-  }
-
-  .optout {
     margin-top: var(--space-3);
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: var(--space-2);
   }
 
   button {
+    margin-top: var(--space-2);
     padding: var(--space-1) var(--space-3);
     font-family: var(--font-sans);
     font-size: var(--text-sm);

@@ -19,3 +19,5 @@ npm-debug.log*
 docs/
 CLAUDE.md
 .claude/skills/
+
+.claude/settings.local.json
