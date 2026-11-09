@@ -7,9 +7,9 @@ draft: false
 
 **Summary**
 
-- **What I came for, and found:** McKinsey taught me judgment and influence through leaders who read my work, judged my thinking, and invested in me. But by design, that trust resets with every new study and every new team.
-- **What AI changes:** when AI makes polished pages routine, content analysts deliver no longer proves understanding. The people who would invest in you have a harder time telling who to invest in, and mentorship becomes harder.
-- **Why I'm leaving:** I want to also hone my judgment through results, not just by how people react to my work. Getting that kind of feedback at the AI frontier meant leaving.
+- **What I came for and found:** I learned a lot at McKinsey from leaders who read my work, judged my thinking, and invested in me. But by design, that trust resets with every new study and every new team
+- **What AI changes:** when AI makes polished pages routine, the content that analysts deliver no longer proves understanding. The people who would invest in you have a harder time telling who to invest in, and mentorship becomes harder
+- **Why I'm leaving:** I want to also hone my judgment through results, not just by how people react to my work. Getting that kind of feedback at the AI frontier meant leaving
 
 ***
 
@@ -95,4 +95,4 @@ If you ever told me what my work was missing and then let me try again, thank yo
 
 *Note: client references and details altered to protect confidentiality.*
 
-In the spirit of more learning, I plan to write more. If you'd like to read along and see the different mini-projects I'll try to make, please [subscribe on the writing page](/writing)! Would love to stay in touch and hear about your experience at work and beyond.
+In the spirit of more learning, I plan to write more. If you'd like to read along and see the different mini-projects I'll try to make, please [subscribe](/writing)! Would love to stay in touch and hear about your experience at work and beyond.
