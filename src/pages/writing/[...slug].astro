@@ -3,6 +3,7 @@ import type { GetStaticPaths } from 'astro';
 import { render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import TableOfContents from '../../components/TableOfContents.astro';
+import Subscribe from '../../components/Subscribe.astro';
 import { getPosts, formatDate } from '../../lib/content';
 
 export const getStaticPaths = (async () => {
@@ -34,6 +35,8 @@ const { Content, headings } = await render(post);
       <Content />
     </div>
   </article>
+
+  <Subscribe />
 
   <p class="back ui">
     <a href="/writing" data-track="post_back">

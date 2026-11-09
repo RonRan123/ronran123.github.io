@@ -58,6 +58,13 @@ using this snippet, and resets if you clear site data.
 **Internal clicks:** links carrying `data-track="<label>"` send an `internal_link_click` event with
 that label. Add the attribute to any new list of links.
 
+## Newsletter
+
+Buttondown ([buttondown.com/ronithranjan](https://buttondown.com/ronithranjan)), set in
+`newsletterAction` in `src/consts.ts`. `src/components/Subscribe.astro` is a plain form that
+opens Buttondown's confirmation in a new tab, and sends a `newsletter_signup` event to GA. It sits
+at the bottom of every post, `/writing` and `/projects`.
+
 ## Layout
 
 ```

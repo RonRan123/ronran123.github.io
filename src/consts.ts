@@ -10,15 +10,12 @@ export const SITE = {
   github: 'https://github.com/RonRan123',
 
   /**
-   * Buttondown newsletter endpoint.
-   *
-   * SETUP (one time, Ronith): create a free account at buttondown.com,
-   * then replace `USERNAME` below with your Buttondown username.
-   * The form is a plain HTML POST — no script tag, no dependency.
-   * Swapping providers later means changing this one URL.
+   * Buttondown newsletter (buttondown.com/ronithranjan). The form is a plain
+   * HTML POST — no script tag, no dependency. Swapping providers later means
+   * changing these two URLs.
    */
-  newsletterAction: 'https://buttondown.com/api/emails/embed-subscribe/USERNAME',
-  newsletterConfigured: false,
+  newsletterAction: 'https://buttondown.com/api/emails/embed-subscribe/ronithranjan',
+  newsletterUrl: 'https://buttondown.com/ronithranjan',
 } as const;
 
 /**
