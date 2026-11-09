@@ -42,7 +42,7 @@ removes it from the address bar so a copied link doesn't carry it.
 
 | Code                | Use for                               |
 | ------------------- | ------------------------------------- |
-| `?ref=newsletter`   | Buttondown emails                     |
+| `?ref=newsletter`   | added automatically to Buttondown emails |
 | `?ref=email`        | the link in your email signature      |
 | `?ref=personal`     | links you send one-off (email, texts) |
 | `?ref=linkedin`     | LinkedIn posts, DMs, profile          |
@@ -57,6 +57,17 @@ using this snippet, and resets if you clear site data.
 
 **Internal clicks:** links carrying `data-track="<label>"` send an `internal_link_click` event with
 that label. Add the attribute to any new list of links.
+
+## Newsletter
+
+Buttondown ([buttondown.com/ronithranjan](https://buttondown.com/ronithranjan)), set in
+`newsletterAction` in `src/consts.ts`. `src/components/Subscribe.astro` is a plain form that
+opens Buttondown's confirmation in a new tab, and sends a `newsletter_signup` event to GA. It sits
+at the bottom of every post, `/writing` and `/projects`.
+
+New posts and projects are emailed by Buttondown's RSS-to-email, which reads
+`/newsletter.xml` — the same feed as `/rss.xml`, but its links carry `?ref=newsletter` so email
+clicks count as newsletter traffic. Both are built by `src/lib/feed.ts`.
 
 ## Layout
 

@@ -25,6 +25,16 @@ import { SITE } from '../consts';
 
   <button type="button" id="optout-toggle" hidden></button>
 
+  <h2>Newsletter</h2>
+  <div class="prose body">
+    <p>
+      If you subscribe, your email address is stored by
+      <a href={SITE.newsletterUrl}>Buttondown</a>, which sends the newsletter. I use it only to
+      email you new writing and projects. Every email has a one-click unsubscribe link, and you can
+      email me to have your address removed.
+    </p>
+  </div>
+
   <div class="prose body">
     <p>
       Questions? Email me at <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
@@ -54,6 +64,11 @@ import { SITE } from '../consts';
 <style>
   .body {
     margin-top: var(--space-3);
+  }
+
+  h2 {
+    font-size: var(--text-lg);
+    margin-top: var(--space-5);
   }
 
   button {

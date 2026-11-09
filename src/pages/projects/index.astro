@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import Subscribe from '../../components/Subscribe.astro';
 import { getProjects, formatDate } from '../../lib/content';
 
 const projects = await getProjects();
@@ -24,6 +25,8 @@ const projects = await getProjects();
       </li>
     ))}
   </ul>
+
+  <Subscribe />
 </BaseLayout>
 
 <style>
