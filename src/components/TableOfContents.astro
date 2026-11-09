@@ -1,0 +1,211 @@
+---
+import type { MarkdownHeading } from 'astro';
+
+/**
+ * Sticky "contents" rail for long-form pages (writing + projects).
+ *
+ * Sits in the empty left margin beside the 640px reading column, so the
+ * column itself never moves. Hidden below the width where that margin
+ * exists, and not rendered at all for short pieces (< MIN_HEADINGS).
+ *
+ * Behaviour (script below):
+ *   - the section you're reading is marked aria-current → bold
+ *   - the rail dims while the page is scrolling, and is fully legible
+ *     whenever the pointer or keyboard focus is on it
+ *
+ * The parent <article> must be `position: relative` — the rail is
+ * absolutely positioned against it and its inner nav is sticky.
+ */
+interface Props {
+  headings: MarkdownHeading[];
+  title: string;
+}
+
+const MIN_HEADINGS = 3;
+
+const { headings, title } = Astro.props;
+const items = headings.filter((h) => h.depth === 2 || h.depth === 3);
+---
+
+{
+  items.length >= MIN_HEADINGS && (
+    <aside class="toc-rail ui">
+      <nav class="toc" aria-label="Contents" data-toc>
+        <p class="toc-title">{title}</p>
+        <ol>
+          {items.map((h) => (
+            <li class={`depth-${h.depth}`}>
+              <a href={`#${h.slug}`} data-text={h.text} data-track="toc_click">
+                {h.text}
+              </a>
+            </li>
+          ))}
+        </ol>
+      </nav>
+    </aside>
+  )
+}
+
+<script>
+  const nav = document.querySelector<HTMLElement>('[data-toc]');
+
+  if (nav) {
+    const links = Array.from(nav.querySelectorAll<HTMLAnchorElement>('a[href^="#"]'));
+    const targets = links
+      .map((a) => document.getElementById(decodeURIComponent(a.hash.slice(1))))
+      .filter((el): el is HTMLElement => el !== null);
+
+    // A heading becomes "current" once it passes this line (30% down the viewport).
+    const ACTIVE_LINE = 0.3;
+    const SCROLL_IDLE_MS = 600;
+
+    let frame = 0;
+    let idleTimer: number | undefined;
+
+    const update = () => {
+      frame = 0;
+      const line = window.innerHeight * ACTIVE_LINE;
+      const atBottom =
+        window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2;
+
+      let current: HTMLElement | undefined;
+      if (atBottom) {
+        current = targets[targets.length - 1];
+      } else {
+        for (const h of targets) {
+          if (h.getBoundingClientRect().top <= line) current = h;
+          else break;
+        }
+      }
+
+      for (const a of links) {
+        if (current && a.getAttribute('href') === `#${current.id}`) {
+          a.setAttribute('aria-current', 'true');
+        } else {
+          a.removeAttribute('aria-current');
+        }
+      }
+    };
+
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+      nav.classList.add('is-scrolling');
+      window.clearTimeout(idleTimer);
+      idleTimer = window.setTimeout(() => nav.classList.remove('is-scrolling'), SCROLL_IDLE_MS);
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    });
+    update();
+  }
+</script>
+
+<style>
+  /* Only shown when the left margin can actually hold it:
+     640px column + 2 × (rail + gap) ≈ 72rem. */
+  .toc-rail {
+    display: none;
+  }
+
+  @media (min-width: 72rem) {
+    .toc-rail {
+      display: block;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: calc(100% + var(--space-5));
+      width: 13rem;
+    }
+  }
+
+  .toc {
+    position: sticky;
+    top: var(--space-5);
+    max-height: calc(100vh - 2 * var(--space-5));
+    overflow-y: auto;
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    line-height: var(--leading-tight);
+    opacity: 0.55;
+    transition: opacity 0.25s ease;
+  }
+
+  .toc.is-scrolling {
+    opacity: 0.3;
+  }
+
+  .toc:hover,
+  .toc:focus-within {
+    opacity: 1;
+  }
+
+  .toc-title {
+    margin: 0 0 var(--space-2);
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-left: 1px solid var(--color-border);
+  }
+
+  li {
+    margin: 0;
+  }
+
+  a {
+    position: relative;
+    /* Grid + a hidden bold copy (::after) reserves the bold width up front,
+       so a link turning bold never re-wraps and shifts the list. */
+    display: grid;
+    padding: 0.35rem 0 0.35rem var(--space-2);
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+
+  a::after {
+    content: attr(data-text);
+    font-weight: 600;
+    visibility: hidden;
+    height: 0;
+    overflow: hidden;
+  }
+
+  .depth-3 a {
+    padding-left: calc(var(--space-2) + var(--space-2));
+  }
+
+  a:hover,
+  a:focus-visible {
+    color: var(--color-text);
+  }
+
+  a[aria-current='true'] {
+    color: var(--color-text);
+    font-weight: 600;
+  }
+
+  /* Accent tick over the rail line for the current section. */
+  a[aria-current='true']::before {
+    content: '';
+    position: absolute;
+    left: -1px;
+    top: 0.35rem;
+    bottom: 0.35rem;
+    width: 2px;
+    background: var(--color-accent);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .toc,
+    a {
+      transition: none;
+    }
+  }
+</style>

@@ -138,6 +138,18 @@ main {
   margin-top: var(--space-4);
 }
 
+/* Jumping to a section from the contents rail: land with breathing room
+   above the heading, and glide there unless the reader opts out of motion. */
+.prose :is(h2, h3) {
+  scroll-margin-top: var(--space-4);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
 /* Utility: sans-serif UI text (dates, metadata, labels) */
 .ui {
   font-family: var(--font-sans);

@@ -2,6 +2,7 @@
 import type { GetStaticPaths } from 'astro';
 import { render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import TableOfContents from '../../components/TableOfContents.astro';
 import { getPosts, formatDate } from '../../lib/content';
 
 export const getStaticPaths = (async () => {
@@ -10,7 +11,7 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths;
 
 const { post } = Astro.props;
-const { Content } = await render(post);
+const { Content, headings } = await render(post);
 ---
 
 <BaseLayout
@@ -21,6 +22,7 @@ const { Content } = await render(post);
   contentGroup="writing"
 >
   <article>
+    <TableOfContents headings={headings} title={post.data.title} />
     <header>
       <h1>{post.data.title}</h1>
       <p class="ui date">
@@ -41,6 +43,10 @@ const { Content } = await render(post);
 </BaseLayout>
 
 <style>
+  article {
+    position: relative; /* anchors the TableOfContents rail */
+  }
+
   header {
     margin-bottom: var(--space-4);
   }
