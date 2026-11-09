@@ -2,7 +2,7 @@
 title: "Finding Your People: What Two Years at McKinsey Taught Me and What AI Is Changing"
 date: 2026-11-09
 description: "What two years of consulting taught me about apprenticeship, why AI is muddying the signal mentors rely on, and why I'm leaving to build where results are the feedback."
-draft: true
+draft: false
 ---
 
 **Summary**
