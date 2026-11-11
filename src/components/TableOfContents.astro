@@ -31,7 +31,9 @@ const items = headings.filter((h) => h.depth === 2 || h.depth === 3);
   items.length >= MIN_HEADINGS && (
     <aside class="toc-rail ui">
       <nav class="toc" aria-label="Contents" data-toc>
-        <p class="toc-title">{title}</p>
+        <a class="toc-title" href="#top" data-track="toc_top">
+          {title}
+        </a>
         <ol>
           {items.map((h) => (
             <li class={`depth-${h.depth}`}>
@@ -50,7 +52,7 @@ const items = headings.filter((h) => h.depth === 2 || h.depth === 3);
   const nav = document.querySelector<HTMLElement>('[data-toc]');
 
   if (nav) {
-    const links = Array.from(nav.querySelectorAll<HTMLAnchorElement>('a[href^="#"]'));
+    const links = Array.from(nav.querySelectorAll<HTMLAnchorElement>('ol a'));
     const targets = links
       .map((a) => document.getElementById(decodeURIComponent(a.hash.slice(1))))
       .filter((el): el is HTMLElement => el !== null);
@@ -141,10 +143,18 @@ const items = headings.filter((h) => h.depth === 2 || h.depth === 3);
     opacity: 1;
   }
 
+  /* The title doubles as "back to top" (#top scrolls to the top of the page). */
   .toc-title {
+    display: block;
     margin: 0 0 var(--space-2);
     font-weight: 600;
     color: var(--color-text);
+    text-decoration: none;
+  }
+
+  .toc-title:hover,
+  .toc-title:focus-visible {
+    color: var(--color-accent);
   }
 
   ol {
@@ -158,7 +168,7 @@ const items = headings.filter((h) => h.depth === 2 || h.depth === 3);
     margin: 0;
   }
 
-  a {
+  ol a {
     position: relative;
     /* Grid + a hidden bold copy (::after) reserves the bold width up front,
        so a link turning bold never re-wraps and shifts the list. */
@@ -169,7 +179,7 @@ const items = headings.filter((h) => h.depth === 2 || h.depth === 3);
     transition: color 0.15s ease;
   }
 
-  a::after {
+  ol a::after {
     content: attr(data-text);
     font-weight: 600;
     visibility: hidden;
@@ -181,18 +191,18 @@ const items = headings.filter((h) => h.depth === 2 || h.depth === 3);
     padding-left: calc(var(--space-2) + var(--space-2));
   }
 
-  a:hover,
-  a:focus-visible {
+  ol a:hover,
+  ol a:focus-visible {
     color: var(--color-text);
   }
 
-  a[aria-current='true'] {
+  ol a[aria-current='true'] {
     color: var(--color-text);
     font-weight: 600;
   }
 
   /* Accent tick over the rail line for the current section. */
-  a[aria-current='true']::before {
+  ol a[aria-current='true']::before {
     content: '';
     position: absolute;
     left: -1px;

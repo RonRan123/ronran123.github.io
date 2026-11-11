@@ -5,7 +5,7 @@ description: "What two years of consulting taught me about apprenticeship, why A
 draft: false
 ---
 
-**Summary**
+## Summary
 
 - **What I came for and found:** I learned a lot at McKinsey from leaders who read my work, judged my thinking, and invested in me. But by design, that trust resets with every new study and every new team
 - **What AI changes:** when AI makes polished pages routine, the content that analysts deliver no longer proves understanding. The people who would invest in you have a harder time telling who to invest in, and mentorship becomes harder
