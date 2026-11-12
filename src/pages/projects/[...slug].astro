@@ -4,6 +4,7 @@ import { render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import TableOfContents from '../../components/TableOfContents.astro';
 import { getProjects, formatDate } from '../../lib/content';
+import { previewImage } from '../../lib/preview-image';
 
 export const getStaticPaths = (async () => {
   const projects = await getProjects();
@@ -16,9 +17,16 @@ export const getStaticPaths = (async () => {
 const { project } = Astro.props;
 const { Content, headings } = await render(project);
 const { title, description, date, externalLink, externalLabel } = project.data;
+const image = await previewImage(project.data.image);
 ---
 
-<BaseLayout title={title} description={description} type="article" contentGroup="projects">
+<BaseLayout
+  title={title}
+  description={description}
+  type="article"
+  image={image}
+  contentGroup="projects"
+>
   <article>
     <TableOfContents headings={headings} title={title} />
     <header>

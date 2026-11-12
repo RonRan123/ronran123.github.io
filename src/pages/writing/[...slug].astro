@@ -5,6 +5,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import TableOfContents from '../../components/TableOfContents.astro';
 import Subscribe from '../../components/Subscribe.astro';
 import { getPosts, formatDate } from '../../lib/content';
+import { previewImage } from '../../lib/preview-image';
 
 export const getStaticPaths = (async () => {
   const posts = await getPosts();
@@ -13,6 +14,7 @@ export const getStaticPaths = (async () => {
 
 const { post } = Astro.props;
 const { Content, headings } = await render(post);
+const image = await previewImage(post.data.image);
 ---
 
 <BaseLayout
@@ -20,6 +22,7 @@ const { Content, headings } = await render(post);
   description={post.data.description}
   type="article"
   publishedDate={post.data.date}
+  image={image}
   contentGroup="writing"
 >
   <article>
@@ -76,6 +79,14 @@ const { Content, headings } = await render(post);
 
   .body :global(img) {
     margin-block: var(--space-3);
+  }
+
+  /* Caption: an italic line directly under an image in the Markdown. */
+  .body :global(img + em) {
+    display: block;
+    margin-top: calc(-1 * var(--space-2));
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
   }
 
   .back {

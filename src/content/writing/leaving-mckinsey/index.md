@@ -3,6 +3,7 @@ title: "Finding Your People: What Two Years at McKinsey Taught Me and What AI Is
 date: 2026-11-09
 description: "What two years of consulting taught me about apprenticeship, why AI is muddying the signal mentors rely on, and why I'm leaving to build where results are the feedback."
 draft: false
+image: ./office-first-day.jpg
 ---
 
 ## Summary
@@ -94,3 +95,9 @@ If you ever told me what my work was missing and then let me try again, thank yo
 *Note: client references and details altered to protect confidentiality.*
 
 In the spirit of more learning, I plan to write more. If you'd like to read along and see the different mini-projects I'll try to make, please [subscribe](/writing)! Would love to stay in touch and hear about your experience at work and beyond.
+
+![Looking up at a glass-and-steel office tower against a grey sky, framed by the slats of a white steel canopy](./office-first-day.jpg)
+*Picture of office from first day on the job*
+
+![Sunset over the Hudson River from a high office window, with the Jersey City skyline across the water and downtown towers in the foreground](./office-sunset.jpg)
+*NYC sunset pictures are unbeatable from the office*
