@@ -8,5 +8,6 @@ export default defineConfig({
   site: 'https://www.ronithranjan.com',
   trailingSlash: 'never',
   build: { format: 'file' },
-  integrations: [sitemap()],
+  // /subscribed is only reached from Buttondown's confirmation redirect.
+  integrations: [sitemap({ filter: (page) => !page.endsWith('/subscribed') })],
 });

@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+/**
+ * GitHub Pages serves dist/404.html for any missing path. Pages are built as
+ * /writing.html (build.format 'file'), so /writing/ has no file behind it.
+ * Links with a trailing slash (from emails, other sites, Buttondown's
+ * redirects) would otherwise dead-end, so retry them without the slash.
+ */
+---
+
+<BaseLayout title="Page not found" description="This page doesn't exist." image={null}>
+  <script is:inline>
+    (function () {
+      var p = location.pathname;
+      if (p.length > 1 && p.endsWith('/')) {
+        location.replace(p.replace(/\/+$/, '') + location.search + location.hash);
+      }
+    })();
+  </script>
+  <h1>Page not found</h1>
+  <div class="prose body">
+    <p>
+      That page doesn't exist. Try <a href="/writing">writing</a>, <a href="/projects">projects</a>,
+      or the <a href="/">home page</a>.
+    </p>
+  </div>
+</BaseLayout>
