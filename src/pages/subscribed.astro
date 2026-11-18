@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+/**
+ * Where Buttondown sends readers after they click "Confirm subscription".
+ * Set Buttondown → Settings → Subscribing → confirmation redirect URL to
+ * https://www.ronithranjan.com/subscribed (no trailing slash: with
+ * build.format 'file', /subscribed/ would 404 on GitHub Pages).
+ */
+---
+
+<BaseLayout title="You're subscribed" description="Thanks for subscribing." image={null}>
+  <h1>You're subscribed</h1>
+  <div class="prose body">
+    <p>
+      Thanks for signing up. New writing and projects will land in your inbox, and every email has
+      a one-click unsubscribe link.
+    </p>
+    <p>In the meantime, here's <a href="/writing">everything I've written so far</a>.</p>
+  </div>
+</BaseLayout>
